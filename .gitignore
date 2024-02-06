@@ -1,5 +1,5 @@
 ### IntelliJ IDEA ###
-idea/
+.idea
 .idea/
 out/
 !**/src/main/**/out/
@@ -56,3 +56,4 @@ fabric.properties
 
 # *.iml
 # modules.xml
+/.idea/
