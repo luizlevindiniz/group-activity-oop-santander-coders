@@ -68,4 +68,9 @@ public class Filme {
     public void setDiretores(List<Diretor> diretores) {
         this.diretores = diretores;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%d - %s", getId(), getTitulo());
+    }
 }
