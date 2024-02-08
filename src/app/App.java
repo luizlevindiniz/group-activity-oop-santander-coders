@@ -11,9 +11,11 @@ public class App {
         FilmesRepository.insere("Uma lenda urbana");
         FilmesRepository.insere("Outro filme");
 
+
+
         List<Filme> lista = FilmesRepository.listarTodos();
         lista.forEach((filme -> System.out.println(filme.toString())));
-        FilmesRepository.alteraNome(1,"Outro nome");
+        FilmesRepository.alteraNome(1, "Outro nome");
         lista.forEach((filme -> System.out.println(filme.toString())));
         FilmesRepository.deletar(1);
         lista.forEach((filme -> System.out.println(filme.toString())));
