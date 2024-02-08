@@ -15,6 +15,9 @@ public class App {
         lista.forEach((filme -> System.out.println(filme.toString())));
         FilmesRepository.alteraNome(1,"Outro nome");
         lista.forEach((filme -> System.out.println(filme.toString())));
+        FilmesRepository.deletar(1);
+        lista.forEach((filme -> System.out.println(filme.toString())));
+
 
     }
 }
