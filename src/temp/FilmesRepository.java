@@ -11,6 +11,7 @@ import model.Filme;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class FilmesRepository {
 
@@ -44,6 +45,7 @@ public class FilmesRepository {
     }
 
     public static List<Filme> pesquisarPorNome(String nome){
-        return null;
+        return listaDeFilmes.stream().filter(filme ->
+            filme.getTitulo().contains(nome)).collect(Collectors.toList());
     }
 }

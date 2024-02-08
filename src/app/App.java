@@ -16,5 +16,6 @@ public class App {
         FilmesRepository.alteraNome(1,"Outro nome");
         lista.forEach((filme -> System.out.println(filme.toString())));
 
+        System.out.println(FilmesRepository.pesquisarPorNome("Outro"));
     }
 }
