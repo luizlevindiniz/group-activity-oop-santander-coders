@@ -19,5 +19,6 @@ public class App {
         lista.forEach((filme -> System.out.println(filme.toString())));
 
 
+        System.out.println(FilmesRepository.pesquisarPorNome("Outro"));
     }
 }
