@@ -33,13 +33,11 @@ public class FilmesRepository {
     public static void deletar(int id){
         Optional<Filme> filmeOptional = listaDeFilmes.stream().filter(f -> f.getId() == id).findFirst();
 
-        // Se o filme foi encontrado, remova-o da lista
         if (filmeOptional.isPresent()) {
             Filme filme = filmeOptional.get();
             listaDeFilmes.remove(filme);
             System.out.println("Filme deletado com sucesso: " + filme.getTitulo());
         } else {
-            // Se o filme não foi encontrado, você pode lançar uma exceção ou lidar com isso de outra forma
             throw new IllegalArgumentException("Filme com ID " + id + " não encontrado");
         }
     }
