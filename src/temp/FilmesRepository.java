@@ -10,6 +10,7 @@ import model.Filme;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class FilmesRepository {
 
@@ -32,11 +33,17 @@ public class FilmesRepository {
 
     }
 
-    public static void editar(int id){
-
+    public static Filme alteraNome(int id, String nome){
+        Filme filme = listaDeFilmes.stream().filter(f -> f.getId() == id).findFirst().get();
+        filme.setTitulo(nome);
+        return filme;
     }
 
     public static List<Filme> listarTodos(){
         return listaDeFilmes;
+    }
+
+    public static List<Filme> pesquisarPorNome(String nome){
+        return null;
     }
 }

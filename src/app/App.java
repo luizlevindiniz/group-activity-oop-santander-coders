@@ -12,9 +12,9 @@ public class App {
         FilmesRepository.insere("Outro filme");
 
         List<Filme> lista = FilmesRepository.listarTodos();
-        for (Filme filme : lista) {
-            System.out.println(filme.toString());
-        }
+        lista.forEach((filme -> System.out.println(filme.toString())));
+        FilmesRepository.alteraNome(1,"Outro nome");
+        lista.forEach((filme -> System.out.println(filme.toString())));
 
     }
 }
