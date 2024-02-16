@@ -21,13 +21,20 @@ public class FilmesRepository {
     private FilmesRepository(){
 
     }
-    public static Filme insere(String titulo){
-        Filme filme = new Filme();
-        filme.setId(contador);
-        filme.setTitulo(titulo);
-        contador++;
-        listaDeFilmes.add(filme);
-        return filme;
+    public static Filme insere(String titulo) {
+        if (listaDeFilmes.stream().anyMatch((f) -> {
+            return f.getTitulo().equals(titulo);
+        })) {
+            System.out.println("Erro: O título '" + titulo + "' já existe na lista de filmes.");
+            return null;
+        } else {
+            Filme filme = new Filme();
+            filme.setId(contador);
+            filme.setTitulo(titulo);
+            ++contador;
+            listaDeFilmes.add(filme);
+            return filme;
+        }
     }
 
     public static void deletar(int id){
