@@ -3,15 +3,16 @@ package repository;
 import model.Filme;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface FilmesRepository {
-    public Filme inserir(Filme filme);
+    void inserir(Filme filme);
 
-    public Filme atualizar(Filme filme);
+    Filme alteraNome(int id, String nome);
 
-    public void excluir(Filme filme);
+    Filme deletar(int id);
 
-    public List<Filme> pesquisarPorNome(String nome);
+    List<Filme> pesquisarPorNome(String nome);
+
+    List<Filme> listarTodos();
 
 }

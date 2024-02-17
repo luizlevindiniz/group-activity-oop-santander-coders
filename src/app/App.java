@@ -1,26 +1,25 @@
 package app;
 
 import model.Filme;
-import temp.FilmesRepository;
+import controllers.FilmesController;
 
 import java.util.List;
 
 public class App {
     public static void main(String[] args) {
+        FilmesController filmesController = FilmesController.getInstance();
 
-        FilmesRepository.insere("Uma lenda urbana");
-        FilmesRepository.insere("Outro filme");
-
-
-
-        List<Filme> lista = FilmesRepository.listarTodos();
+        
+        /*
+        List<Filme> lista = FilmesController.listarTodos();
         lista.forEach((filme -> System.out.println(filme.toString())));
-        FilmesRepository.alteraNome(1, "Outro nome");
+        FilmesController.alteraNome(1, "Outro nome");
         lista.forEach((filme -> System.out.println(filme.toString())));
-        FilmesRepository.deletar(1);
+        FilmesController.deletar(1);
         lista.forEach((filme -> System.out.println(filme.toString())));
 
 
-        System.out.println(FilmesRepository.pesquisarPorNome("Outro"));
+        System.out.println(FilmesController.pesquisarPorNome("Outro"));
+        * */
     }
 }
