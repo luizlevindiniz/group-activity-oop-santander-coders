@@ -1,4 +1,6 @@
-package model;
+package model.builders;
+
+import model.Ator;
 
 public class AtorBuilder {
     private final Ator ator = new Ator();

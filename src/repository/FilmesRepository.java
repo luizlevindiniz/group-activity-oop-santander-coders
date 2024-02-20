@@ -15,4 +15,6 @@ public interface FilmesRepository {
 
     List<Filme> listarTodos();
 
+    void exibirDetalhes();
+
 }

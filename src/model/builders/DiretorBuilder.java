@@ -1,13 +1,15 @@
-package model;
+package model.builders;
+
+import model.Diretor;
 
 public class DiretorBuilder {
         private final Diretor diretor = new Diretor();
 
-        public model.DiretorBuilder comID(int id){
+        public DiretorBuilder comID(int id){
             diretor.setId(id);
             return this;
         }
-        public model.DiretorBuilder comNome(String nome){
+        public DiretorBuilder comNome(String nome){
             diretor.setNome(nome);
             return this;
         }

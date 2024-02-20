@@ -1,4 +1,8 @@
-package model;
+package model.builders;
+
+import model.Ator;
+import model.Diretor;
+import model.Filme;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
