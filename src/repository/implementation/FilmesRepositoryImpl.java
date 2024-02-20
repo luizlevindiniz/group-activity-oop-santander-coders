@@ -85,6 +85,25 @@ public class FilmesRepositoryImpl implements FilmesRepository {
             throw new IllegalArgumentException("Diretor com ID " + id + " não encontrado");
         }
     }
+
+    @Override
+    public Diretor alteraNomeDiretor(int id, String nome) {
+        Optional<Diretor> diretorOptional = listaDeDiretores.stream().filter(f -> f.getId() == id).findFirst();
+        if (diretorOptional.isPresent()) {
+            Diretor diretor = diretorOptional.get();
+            diretor.setTitulo(nome);
+            return diretor;
+        } else {
+            throw new IllegalArgumentException("Diretor com ID " + id + " não encontrado");
+        }
+    }
+
+    @Override
+    public List<Diretor> pesquisarPorNomeDiretor(String nome) {
+        return listaDeDiretores.stream().filter(diretor ->
+                diretor.getTitulo().contains(nome)).collect(Collectors.toList());
+    }
+
     public List<Diretor> listarTodosDiretores(){
         return listaDeDiretores;
     }
@@ -109,6 +128,25 @@ public class FilmesRepositoryImpl implements FilmesRepository {
             throw new IllegalArgumentException("Ator com ID " + id + " não encontrado");
         }
     }
+
+    @Override
+    public Ator alteraNomeAtor(int id, String nome) {
+        Optional<Ator> atorOptional = listaDeAtores.stream().filter(f -> f.getId() == id).findFirst();
+        if (atorOptional.isPresent()) {
+            Ator ator = diretorOptional.get();
+            ator.setTitulo(nome);
+            return ator;
+        } else {
+            throw new IllegalArgumentException("Ator com ID " + id + " não encontrado");
+        }
+    }
+
+    @Override
+    public List<Ator> pesquisarPorNomeAtor(String nome) {
+        return listaDeAtores.stream().filter(ator ->
+                ator.getTitulo().contains(nome)).collect(Collectors.toList());
+    }
+
     public List<Ator> listarTodosAtores(){
         return listaDeAtores;
     }
