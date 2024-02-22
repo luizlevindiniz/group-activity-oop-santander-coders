@@ -1,10 +1,15 @@
 package app;
 
+
+import controllers.AtoresController;
 import model.*;
+import controllers.DiretoresController;
 import controllers.FilmesController;
 import model.builders.AtorBuilder;
 import model.builders.DiretorBuilder;
 import model.builders.FilmeBuilder;
+import repository.impl.AtoresRepositoryImpl;
+import repository.impl.DiretoresRepositoryImpl;
 import repository.impl.FilmesRepositoryImpl;
 
 import java.math.BigDecimal;
@@ -15,8 +20,11 @@ import java.util.List;
 public class App {
     public static void main(String[] args) {
         FilmesRepositoryImpl repository = new FilmesRepositoryImpl();
+        DiretoresRepositoryImpl diretoresRepository = new DiretoresRepositoryImpl();
+        AtoresRepositoryImpl atoresRepository = new AtoresRepositoryImpl();
         FilmesController filmesController = FilmesController.getInstance(repository);
-
+        DiretoresController diretoresController = DiretoresController.getInstanceDiretores(diretoresRepository);
+        AtoresController atoresController = AtoresController.getInstanceAtores(atoresRepository);
         Ator ator1 = new AtorBuilder().comID(1).comNome("Brad Pitt").build();
         Ator ator2 = new AtorBuilder().comID(2).comNome("Sean Connery").build();
         Ator ator3 = new AtorBuilder().comID(3).comNome("Keanu Norris").build();
@@ -48,17 +56,15 @@ public class App {
                         .comOrcamento(BigDecimal.valueOf(1223.4)).comLancamentoEm(LocalDate.parse("2023-01-01"))
                         .comAtores(atores2).comDiretores(diretores2).build();
 
-        System.out.println(filme2.getDiretores());
-
         filmesController.executar("listarTodos");
 
         filmesController.executar("inserir",filme1);
         filmesController.executar("inserir",filme2);
+
         filmesController.executar("listarTodos");
 
         filmesController.executar("alterarNome",1, "Outro nome");
         filmesController.executar("listarTodos");
-
 
         filmesController.executar("deletar",1);
         filmesController.executar("listarTodos");

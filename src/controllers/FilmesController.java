@@ -1,6 +1,6 @@
 package controllers;
 
-import model.Diretor;
+
 import model.Filme;
 import repository.FilmesRepository;
 
@@ -24,7 +24,7 @@ public class FilmesController {
         return instance;
     }
 
-    public void executar(String comando){
+public void executar(String comando){
         if("listarTodos".equals(comando)){
             repository.listarTodos().forEach((filme -> System.out.println(filme.toString())));
         } else if ("exibirDetalhes".equals(comando)) {

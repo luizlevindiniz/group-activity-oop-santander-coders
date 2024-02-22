@@ -8,7 +8,7 @@ public interface CRUDRepository<T> {
     T alterarNome(int id, String nome);
     List<T> listarTodos();
     List<T> pesquisarPorNome(String nome);
-    void exibirDetalhes();
+
 
 }
 
