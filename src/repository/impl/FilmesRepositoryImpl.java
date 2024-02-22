@@ -1,4 +1,4 @@
-package repository.implementation;
+package repository.impl;
 
 import model.Filme;
 import model.Diretor;
@@ -42,7 +42,7 @@ public class FilmesRepositoryImpl implements FilmesRepository {
     }
 
     @Override
-    public Filme alteraNome(int id, String nome) {
+    public Filme alterarNome(int id, String nome) {
         Optional<Filme> filmeOptional = listaDeFilmes.stream().filter(f -> f.getId() == id).findFirst();
         if (filmeOptional.isPresent()) {
             Filme filme = filmeOptional.get();
@@ -62,93 +62,6 @@ public class FilmesRepositoryImpl implements FilmesRepository {
     public List<Filme> pesquisarPorNome(String nome) {
         return listaDeFilmes.stream().filter(filme ->
                 filme.getTitulo().contains(nome)).collect(Collectors.toList());
-    }
-
-    @Override
-    public void inserirDiretor(Diretor diretores) {
-        if (listaDeDiretores.stream().anyMatch((f) -> f.getNome().equals(diretores.getNome()))) {
-            System.out.println("Erro: O nome '" + diretores.getNome() + "' já existe na lista de diretores.");
-        } else {
-            listaDeDiretores.add(diretores);
-        }
-    }
-
-    @Override
-    public Diretor deletarDiretor(int id){
-        Optional<Diretor> diretorOptional = listaDeDiretores.stream().filter(f -> f.getId() == id).findFirst();
-        if (diretorOptional.isPresent()) {
-            Diretor diretor = diretorOptional.get();
-            listaDeDiretores.remove(diretor);
-            System.out.println("Diretor deletado com sucesso: " + diretor.getNome());
-            return diretor;
-        } else {
-            throw new IllegalArgumentException("Diretor com ID " + id + " não encontrado");
-        }
-    }
-
-    @Override
-    public Diretor alteraNomeDiretor(int id, String nome) {
-        Optional<Diretor> diretorOptional = listaDeDiretores.stream().filter(f -> f.getId() == id).findFirst();
-        if (diretorOptional.isPresent()) {
-            Diretor diretor = diretorOptional.get();
-            diretor.setTitulo(nome);
-            return diretor;
-        } else {
-            throw new IllegalArgumentException("Diretor com ID " + id + " não encontrado");
-        }
-    }
-
-    @Override
-    public List<Diretor> pesquisarPorNomeDiretor(String nome) {
-        return listaDeDiretores.stream().filter(diretor ->
-                diretor.getTitulo().contains(nome)).collect(Collectors.toList());
-    }
-
-    public List<Diretor> listarTodosDiretores(){
-        return listaDeDiretores;
-    }
-
-    @Override
-    public void inserirAtor(Ator atores) {
-        if (listaDeAtores.stream().anyMatch((f) -> f.getNome().equals(atores.getNome()))) {
-            System.out.println("Erro: O nome '" + atores.getNome() + "' já existe na lista de atores.");
-        } else {
-            listaDeAtores.add(atores);
-        }
-    }
-    @Override
-    public Ator deletarAtor(int id){
-        Optional<Ator> atorOptional = listaDeAtores.stream().filter(f -> f.getId() == id).findFirst();
-        if (atorOptional.isPresent()) {
-            Ator ator = atorOptional.get();
-            listaDeAtores.remove(ator);
-            System.out.println("Ator deletado com sucesso: " + ator.getNome());
-            return ator;
-        } else {
-            throw new IllegalArgumentException("Ator com ID " + id + " não encontrado");
-        }
-    }
-
-    @Override
-    public Ator alteraNomeAtor(int id, String nome) {
-        Optional<Ator> atorOptional = listaDeAtores.stream().filter(f -> f.getId() == id).findFirst();
-        if (atorOptional.isPresent()) {
-            Ator ator = diretorOptional.get();
-            ator.setTitulo(nome);
-            return ator;
-        } else {
-            throw new IllegalArgumentException("Ator com ID " + id + " não encontrado");
-        }
-    }
-
-    @Override
-    public List<Ator> pesquisarPorNomeAtor(String nome) {
-        return listaDeAtores.stream().filter(ator ->
-                ator.getTitulo().contains(nome)).collect(Collectors.toList());
-    }
-
-    public List<Ator> listarTodosAtores(){
-        return listaDeAtores;
     }
 
     @Override
@@ -175,6 +88,92 @@ public class FilmesRepositoryImpl implements FilmesRepository {
         } else {
             System.out.println("Filme com ID " + idFilme + " não encontrado");
         }
+    }
+
+
+    public void inserirDiretor(Diretor diretores) {
+        if (listaDeDiretores.stream().anyMatch((f) -> f.getNome().equals(diretores.getNome()))) {
+            System.out.println("Erro: O nome '" + diretores.getNome() + "' já existe na lista de diretores.");
+        } else {
+            listaDeDiretores.add(diretores);
+        }
+    }
+
+    public Diretor deletarDiretor(int id){
+        Optional<Diretor> diretorOptional = listaDeDiretores.stream().filter(f -> f.getId() == id).findFirst();
+        if (diretorOptional.isPresent()) {
+            Diretor diretor = diretorOptional.get();
+            listaDeDiretores.remove(diretor);
+            System.out.println("Diretor deletado com sucesso: " + diretor.getNome());
+            return diretor;
+        } else {
+            throw new IllegalArgumentException("Diretor com ID " + id + " não encontrado");
+        }
+    }
+
+
+    public Diretor alteraNomeDiretor(int id, String nome) {
+        Optional<Diretor> diretorOptional = listaDeDiretores.stream().filter(f -> f.getId() == id).findFirst();
+        if (diretorOptional.isPresent()) {
+            Diretor diretor = diretorOptional.get();
+            diretor.setNome(nome);
+            return diretor;
+        } else {
+            throw new IllegalArgumentException("Diretor com ID " + id + " não encontrado");
+        }
+    }
+
+
+    public List<Diretor> pesquisarPorNomeDiretor(String nome) {
+        return listaDeDiretores.stream().filter(diretor ->
+                diretor.getNome().contains(nome)).collect(Collectors.toList());
+    }
+
+    public List<Diretor> listarTodosDiretores(){
+        return listaDeDiretores;
+    }
+
+
+    public void inserirAtor(Ator atores) {
+        if (listaDeAtores.stream().anyMatch((f) -> f.getNome().equals(atores.getNome()))) {
+            System.out.println("Erro: O nome '" + atores.getNome() + "' já existe na lista de atores.");
+        } else {
+            listaDeAtores.add(atores);
+        }
+    }
+
+    public Ator deletarAtor(int id){
+        Optional<Ator> atorOptional = listaDeAtores.stream().filter(f -> f.getId() == id).findFirst();
+        if (atorOptional.isPresent()) {
+            Ator ator = atorOptional.get();
+            listaDeAtores.remove(ator);
+            System.out.println("Ator deletado com sucesso: " + ator.getNome());
+            return ator;
+        } else {
+            throw new IllegalArgumentException("Ator com ID " + id + " não encontrado");
+        }
+    }
+
+
+    public Ator alteraNomeAtor(int id, String nome) {
+        Optional<Ator> atorOptional = listaDeAtores.stream().filter(f -> f.getId() == id).findFirst();
+        if (atorOptional.isPresent()) {
+            Ator ator = atorOptional.get();
+            ator.setNome(nome);
+            return ator;
+        } else {
+            throw new IllegalArgumentException("Ator com ID " + id + " não encontrado");
+        }
+    }
+
+
+    public List<Ator> pesquisarPorNomeAtor(String nome) {
+        return listaDeAtores.stream().filter(ator ->
+                ator.getNome().contains(nome)).collect(Collectors.toList());
+    }
+
+    public List<Ator> listarTodosAtores(){
+        return listaDeAtores;
     }
 
 
