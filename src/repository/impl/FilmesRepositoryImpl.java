@@ -17,8 +17,6 @@ import java.util.stream.Collectors;
 public class FilmesRepositoryImpl implements FilmesRepository {
     private final List<Filme> listaDeFilmes = new ArrayList<>();
 
-
-
     @Override
     public void inserir(Filme filme) {
         if (listaDeFilmes.stream().anyMatch((f) -> f.getTitulo().equals(filme.getTitulo()))) {

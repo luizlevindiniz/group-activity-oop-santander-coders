@@ -19,12 +19,20 @@ import java.util.List;
 
 public class App {
     public static void main(String[] args) {
+        // Repositories
         FilmesRepositoryImpl repository = new FilmesRepositoryImpl();
         DiretoresRepositoryImpl diretoresRepository = new DiretoresRepositoryImpl();
         AtoresRepositoryImpl atoresRepository = new AtoresRepositoryImpl();
+
+        // Controllers
         FilmesController filmesController = FilmesController.getInstance(repository);
         DiretoresController diretoresController = DiretoresController.getInstanceDiretores(diretoresRepository);
         AtoresController atoresController = AtoresController.getInstanceAtores(atoresRepository);
+
+        // Testando o controller de filmes
+
+        System.out.println("---TESTANTO CONTROLLER DE FILMES---");
+
         Ator ator1 = new AtorBuilder().comID(1).comNome("Brad Pitt").build();
         Ator ator2 = new AtorBuilder().comID(2).comNome("Sean Connery").build();
         Ator ator3 = new AtorBuilder().comID(3).comNome("Keanu Norris").build();
@@ -72,8 +80,48 @@ public class App {
         System.out.println(filmesController.executar("pesquisarPorNome","Outro"));
         System.out.println(filmesController.executar("pesquisarPorNome","Azul"));
 
-        filmesController.executar("exibirDetalhes");
+        filmesController.executar("exibirDetalhes"); // entrar o id do filme da lista de filmes
 
+        System.out.println("\n");
+        // Testando o controller de diretores
 
+        System.out.println("---TESTANTO CONTROLLER DE DIRETORES---");
+
+        diretoresController.executar("listarTodos");
+
+        diretoresController.executar("inserir",diretor1);
+        diretoresController.executar("inserir",diretor2);
+
+        diretoresController.executar("listarTodos");
+
+        diretoresController.executar("alterarNome",1,"David Villeneuve");
+        diretoresController.executar("listarTodos");
+
+        diretoresController.executar("deletar",1);
+        diretoresController.executar("listarTodos");
+
+        System.out.println(diretoresController.executar("pesquisarPorNome","Steven"));
+        System.out.println(diretoresController.executar("pesquisarPorNome","Azul"));
+
+        System.out.println("\n");
+        // Testando o controller de diretores
+
+        System.out.println("---TESTANTO CONTROLLER DE ATORES---");
+
+        atoresController.executar("listarTodos");
+
+        atoresController.executar("inserir",ator1);
+        atoresController.executar("inserir",ator2);
+
+        atoresController.executar("listarTodos");
+
+        atoresController.executar("alterarNome",1,"Scarlett Johansson");
+        atoresController.executar("listarTodos");
+
+        atoresController.executar("deletar",1);
+        atoresController.executar("listarTodos");
+
+        System.out.println(atoresController.executar("pesquisarPorNome","Sean"));
+        System.out.println(atoresController.executar("pesquisarPorNome","Azul"));
     }
 }
